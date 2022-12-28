@@ -1,4 +1,4 @@
-# slogger
+# slogger [![Go Report Card](https://goreportcard.com/badge/github.com/BitlyTwiser/slogger)](https://goreportcard.com/report/github.com/BitlyTwiser/slogger)
 ```
   .--.--.     ,--,                                                      
  /  /    '. ,--.'|                                                      
