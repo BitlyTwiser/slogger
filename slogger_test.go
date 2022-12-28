@@ -61,7 +61,7 @@ func TestSloggerToFile(t *testing.T) {
 		err := os.Remove(testFile)
 		if err != nil {
 			if os.IsNotExist(err) {
-				panic(fmt.Sprintf("test file was never created, the following error occured: %v", err))
+				panic(fmt.Sprintf("test file was never created, the following error occurred: %v", err))
 			}
 			panic(fmt.Sprintf("error deleting test file, delete file manually. err: %v", err))
 		}
