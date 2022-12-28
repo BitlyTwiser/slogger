@@ -15,15 +15,26 @@ import (
 // Just look at some output, this is nothing more than showing how the values may look
 func TestSloggerOutput(t *testing.T) {
 	stdoutLogger := slogger.NewLogger(os.Stdout)
-	//stdoutLogger.LogEvent("info", "Something four", map[string]any{"one": false})
-	// stdoutLogger.LogEvent("info", "Something four", "one", "two", "Another", false, "four", true, "bob")
-	// stdoutLogger.LogEvent("info", "Something four", "one", "two", "Another", false, "four", true)
-	// stdoutLogger.LogEvent("info", "Something four", "one", "two", "Another", false, "four", true, map[string]any{"one": false})
-	// stdoutLogger.LogEvent("info", "A thing", "key", "value", "AnotherKey", false, "four", 123123, map[string]any{"MORETEST": 123123, "TestAgain": false}, "more", 123123)
-	stdoutLogger.LogEvent("warn", "aaaa", "key", "value", "AnotherKey", false, "four", 123123, map[string]any{"testOne": 42069, "testTwo": false})
-	// stdoutLogger.LogEvent("debug", "Hi mom!")                    // Only runs if in debug level
-	// stdoutLogger.LogError("error", fmt.Errorf("something died")) // Test error logger
-	// stdoutLogger.LogError("error", fmt.Errorf("something died"), 1, 2, 3, "masdasd")
+	stdoutLogger.LogEvent("info", "Test one", map[string]any{"one": false})
+	stdoutLogger.LogEvent("info", "Test two", "one", "two", "Another", false, "four", true, "bob")
+	stdoutLogger.LogEvent("info", "Test three", "one", "two", "Another", false, "four", true)
+	stdoutLogger.LogEvent("info", "Test four", "one", "two", "Another", false, "four", true, map[string]any{"one": false})
+	stdoutLogger.LogEvent("info", "Test five", "key", "value", "AnotherKey", false, "four", 123123, map[string]any{"MORETEST": 123123, "TestAgain": false}, "more", 123123)
+	stdoutLogger.LogEvent("warn", "Test six", "key", "value", "AnotherKey", false, "four", 123123, map[string]any{"testOne": 42069, "testTwo": false})
+}
+
+func TestSloggerError(t *testing.T) {
+	stdoutLogger := slogger.NewLogger(os.Stdout)
+	err := stdoutLogger.LogError("error", fmt.Errorf("something died")) // Test error logger
+	if err == nil {
+		t.Fatalf("expected error, got nil return")
+	}
+
+	err = stdoutLogger.LogError("error", fmt.Errorf("Test 2 died"), 1, 2, 3, "masdasd")
+
+	if err == nil {
+		t.Fatalf("expected error, got nil return")
+	}
 }
 
 // Test logging JSON output to file

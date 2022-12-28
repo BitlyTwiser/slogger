@@ -39,8 +39,10 @@ func (p *Logger) LogEvent(logType string, msg string, args ...any) {
 }
 
 // Logs error messages
-func (p *Logger) LogError(msg string, err error, args ...any) {
+func (p *Logger) LogError(msg string, err error, args ...any) error {
 	p.Logger.Error(msg, err, NewArgumentMapper(args).mapArguments().attributeBuilder()...)
+
+	return err
 }
 
 // NewArgumentMapper creates a pointer to Arguments struct which is processed and passed into the logger
